@@ -4,6 +4,6 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - pytest tests/  --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
+  - pytest --cov api --cov-report term-missing
 after_success:
   - coveralls
