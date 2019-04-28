@@ -1,5 +1,6 @@
 from flask import Flask, make_response, jsonify
 from .sms.sms_service import sms
+from .airtime.airtime_service import airtime
 import africastalking
 
 
@@ -11,6 +12,7 @@ def create_app():
     app.register_error_handler(405, method_not_allowed)
     app.register_error_handler(500, server_error)
     app.register_blueprint(sms)
+    app.register_blueprint(airtime)
     return app
 
 
