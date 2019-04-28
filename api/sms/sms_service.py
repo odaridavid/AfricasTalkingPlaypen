@@ -1,6 +1,6 @@
 from flask import make_response, jsonify, Blueprint
 import africastalking
-import random
+from random import SystemRandom
 
 sms = Blueprint('sms', __name__, url_prefix="/playpen/test")
 
@@ -9,8 +9,9 @@ sms = Blueprint('sms', __name__, url_prefix="/playpen/test")
 def send_sms_service():
     message_service = africastalking.SMS
     ver_code_builder = []
-    for x in range(5):
-        ver_code_builder.append(random.randint(1, 10))
+    cryptgen = SystemRandom()
+    while len(ver_code_builder) <= 5:
+        ver_code_builder.append(cryptgen.randrange(start=0, stop=9))
     separator = ''
     verification_code = separator.join(map(str, ver_code_builder))
     phone_numbers = ["+254717455945"]
